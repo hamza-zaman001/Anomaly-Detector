@@ -44,8 +44,13 @@ class AnomalyDetector:
     def retrain_model(self):
         """
         Retrains the Isolation Forest model on the current window.
-        This can be useful when sensitivity changes are made.
+        Handles potential retraining failures.
         """
-        if len(self.data_window) >= self.window_size:
-            self.model.fit(self.data_window)
-            self.is_model_trained = True
+        try:
+            if len(self.data_window) >= self.window_size:
+                self.model.fit(self.data_window)
+                self.is_model_trained = True
+        except Exception as e:
+            print(f"Retraining failed: {e}")
+            self.is_model_trained = False
+

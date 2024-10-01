@@ -15,18 +15,19 @@ def data_stream_generator(num_points=1000, anomaly_ratio=0.05):
     data = []
     
     for i in range(num_points):
-        # Normal variation around a base value
-        base_value = 100 + random.uniform(-10, 10)  
-        # Simulate a seasonal effect based on the index
-        seasonal_effect = i % 100
-        # Calculate final value
-        value = base_value + seasonal_effect
-
-        # Introduce anomalies randomly
-        if random.random() < anomaly_ratio:
-            value += random.uniform(50, 100)  # Larger deviation for anomalies
-        
-        data.append(value)
+        try:
+            base_value = 100 + random.uniform(-10, 10)
+            seasonal_effect = i % 100
+            value = base_value + seasonal_effect
+            if random.random() < anomaly_ratio:
+                value += random.uniform(50, 100)
+            if random.random() < 0.01:  # Introduce some random data failures
+                value = None  # Simulating a corrupt data point
+            if value is not None:
+                yield value
+        except Exception as e:
+            print(f"Data stream error: {e}")
+        time.sleep(0.01)
     
     # Stream the data one point at a time
     for value in data:
