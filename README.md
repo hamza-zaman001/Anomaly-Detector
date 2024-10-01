@@ -3,14 +3,7 @@
 ## Overview
 The **Efficient Data Stream Anomaly Detection** project is a Python application designed to detect anomalies in continuous data streams, such as financial transactions or system metrics. The application provides real-time visualization of data and highlights detected anomalies, making it a useful tool for monitoring and analysis.
 
-## Table of Contents
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Algorithm Explanation](#algorithm-explanation)
-- [Future Work](#future-work)
-- [License](#license)
+
 
 ## Features
 - **Real-Time Visualization**: Monitor live data streams and see detected anomalies instantly.
